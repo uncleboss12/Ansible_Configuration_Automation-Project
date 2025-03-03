@@ -28,7 +28,9 @@ chmod 600 ~/.ssh/authorized_keys
 ## or copy to the other instances using 
 ssh-copy-id -i ~/.ssh/id_rsa.pub user@target_instance_ip
 
-ssh-copy -i ~/.ssh/id_rsa.pub server-1@10.20.0.3
+ssh-copy-id -i ~/.ssh/id_rsa.pub target_instance_ip
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub server-2@10.20.0.4
 
 # From workstation, try connecting to each server
 ssh username@10.0.0.x  # Replace with actual internal IP
@@ -57,3 +59,10 @@ AuthorizedKeysFile .ssh/authorized_keys
 # After changes, restart SSH:
 sudo systemctl restart sshd
 ```
+### exmple of keys to append to authorized keys to the other servers
+```bash
+echo "ssh-rsa AAA ............" >> ~/.ssh/authorized_keys
+```
+
+```bash
+ssh -i ~/.ssh/ansible target_internal_ip
